@@ -1,0 +1,13 @@
+{
+  "@@locale": "uk_UA",
+  "title": "Заголовок",
+  "@title": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "generalException": "Щось пішло не так, спробуйте ще раз!",
+  "@generalException": {
+    "type": "text",
+    "placeholders": {}
+  }
+}

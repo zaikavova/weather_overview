@@ -1,0 +1,23 @@
+{
+  "@@locale": "en_GB",
+  "addFirstLocationMessage": "Press + to add a place to monitor weather and air condition",
+  "@addFirstLocationMessage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "locationRequestMessage": "\"Enhance your experience! Grant us access to your location for automatic weather&air tracking. You can manually enter your location if you prefer.\"",
+  "@locationRequestMessage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "title": "Weather&Air",
+  "@title": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "generalException": "Something went wrong, please try again!",
+  "@generalException": {
+    "type": "text",
+    "placeholders": {}
+  }
+}

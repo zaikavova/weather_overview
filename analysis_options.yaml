@@ -1,0 +1,64 @@
+analyzer:
+  errors:
+    missing_required_param: warning
+    missing_return: error
+    invalid_annotation_target: ignore
+  exclude: [ '**.gr.dart','**.chopper.dart','lib/generated/**','lib/gen/**', '**.g.dart', '**.freezed.dart' ]
+  plugins:
+    - dart_code_metrics
+  language:
+    strict-casts: true
+    strict-inference: true
+    strict-raw-types: true
+linter:
+  rules:
+    - avoid_relative_lib_imports
+    - sort_constructors_first
+
+dart_code_metrics:
+  anti-patterns:
+    - long-method
+    - long-parameter-list
+  metrics:
+    cyclomatic-complexity: 27
+    source-lines-of-code: 55
+    number-of-parameters: 4
+    maximum-nesting-level: 5
+  metrics-exclude:
+    - test/**
+    - testing_api_charge/**
+    - e2e/**
+    - ios/**
+  rules:
+    - always-remove-listener
+    - avoid-border-all
+    - avoid-collection-methods-with-unrelated-types
+    - avoid-global-state
+    - avoid-missing-enum-constant-in-map
+    - avoid-nested-conditional-expressions
+    - avoid-non-null-assertion
+    - avoid-returning-widgets
+    - avoid-throw-in-catch-block
+    - avoid-unnecessary-type-assertions
+    - avoid-unnecessary-type-casts
+    - avoid-unnecessary-setstate
+    - avoid-unused-parameters
+    - avoid-unrelated-type-assertions
+    - avoid-wrapping-in-padding
+    - double-literal-format
+    - newline-before-return
+    - no-boolean-literal-compare
+    - prefer-const-border-radius
+    - prefer-correct-identifier-length:
+        exceptions: [ 'a', 'b', 'i', 'x', 'y' ]
+        min-identifier-length: 2
+    - prefer-correct-type-name:
+        max-length: 52
+    - prefer-extracting-callbacks
+    - prefer-immediate-return
+    - prefer-first
+    - prefer-last
+    - prefer-single-widget-per-file
+    - prefer-trailing-comma
+    - no-equal-then-else
+    - binary-expression-operand-order

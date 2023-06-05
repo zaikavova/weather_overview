@@ -1,0 +1,3 @@
+class RegisteredException implements Exception {
+
+}
