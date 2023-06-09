@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_overview/generated/l10n.dart';
 import 'package:weather_overview/injection_container.dart' as di;
 import 'package:weather_overview/presentation/index.dart';
+import 'package:weather_overview/routing/index.dart';
 
 @RoutePage()
 class MainScreen extends StatefulWidget {
@@ -22,6 +23,7 @@ class _MainScreenState extends State<MainScreen> {
     super.initState();
     _bloc = di.sl<EnvironmentStatusBloc>();
     _router = di.sl<RootStackRouter>();
+    _bloc.init();
   }
 
   @override
@@ -31,6 +33,9 @@ class _MainScreenState extends State<MainScreen> {
     final floatingButtonSize = MediaQuery.of(context).size.width / 8;
 
     return Scaffold(
+      appBar: AppBar(
+        title: Text(strings.title),
+      ),
       floatingActionButton:
           BlocBuilder<EnvironmentStatusBloc, EnvironmentStatusState>(
         bloc: _bloc,
@@ -62,11 +67,17 @@ class _MainScreenState extends State<MainScreen> {
               errorMessage: state.errorMessage,
             ),
             fetchedIdle: (EnvironmentStatusFetchedIdle state) =>
-                LoadedStatusStateWidget(),
+                LoadedStatusStateWidget(
+              status: state.status,
+            ),
             fetchedLoading: (EnvironmentStatusFetchedLoading state) =>
-                LoadedStatusStateWidget(),
+                LoadedStatusStateWidget(
+              status: state.status,
+            ),
             fetchedError: (EnvironmentStatusFetchedError state) =>
-                LoadedStatusStateWidget(),
+                LoadedStatusStateWidget(
+              status: state.status,
+            ),
           );
         },
       ),
@@ -74,18 +85,24 @@ class _MainScreenState extends State<MainScreen> {
   }
 
   void _onAddLocationPressed() {
-    addLocation().then((value) => _bloc.addLocation(value));
+    addLocation().then((LocationPM? locationPM) {
+      if (locationPM != null) {
+        _bloc.addLocation(locationPM, _bloc.update);
+      }
+    });
   }
 
-  Future<LocationPM> addLocation() {
-    //todo implement add location
-    throw Exception('Implement  adding locatinos');
-  }
+  Future<LocationPM?> addLocation() =>
+      _router.push<LocationPM?>(AddLocationRoute());
 
   void onErrorListener(BuildContext _, EnvironmentStatusState state) {
     final error = state.mapOrNull(fetchedError: (state) => state.errorMessage);
     if (error != null) {
-      throw Exception('Implement show error notification');
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(error),
+        ),
+      );
     }
   }
 }

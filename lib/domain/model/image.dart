@@ -11,7 +11,7 @@ enum WeatherVisualIndicator {
   fewCloudsNight,
   @JsonValue('03n')
   scatteredClouds,
-  @JsonValue('04n')
+  @JsonValue('04d')
   brokenClouds,
   @JsonValue('09d')
   showerRain,
@@ -21,4 +21,8 @@ enum WeatherVisualIndicator {
   rainNight,
   @JsonValue('11d')
   thunderstorm,
+  @JsonValue('13d')
+  snow,
+  @JsonValue('50d')
+  mist,
 }

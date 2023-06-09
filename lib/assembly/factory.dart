@@ -1,5 +1,3 @@
-import 'dart:async';
-
 abstract class Factory<In, Out> {
-  FutureOr<Out> create(In args);
+  Out create(In args);
 }

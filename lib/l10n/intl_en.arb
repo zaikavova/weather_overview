@@ -5,6 +5,11 @@
     "type": "text",
     "placeholders": {}
   },
+  "addLocationButton": "Add Location",
+  "@addLocationButton": {
+    "type": "text",
+    "placeholders": {}
+  },
   "locationRequestMessage": "\"Enhance your experience! Grant us access to your location for automatic weather&air tracking. You can manually enter your location if you prefer.\"",
   "@locationRequestMessage": {
     "type": "text",
@@ -15,8 +20,58 @@
     "type": "text",
     "placeholders": {}
   },
-  "generalException": "Something went wrong, please try again!",
+  "generalException": "Something went wrong, please try again later!",
   "@generalException": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "countryTitle": "County",
+  "@countryTitle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "stateTitle": "State",
+  "@stateTitle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "cityTitle": "City",
+  "@cityTitle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "temperature": "temperature",
+  "@temperature": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "humidity": "humidity",
+  "@humidity": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "windSpeed": "windSpeed",
+  "@windSpeed": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "windDirection": "windDirection",
+  "@windDirection": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "atmospherePressure": "atmospherePressure",
+  "@atmospherePressure": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "airQualityIndex": "airQualityIndex",
+  "@airQualityIndex": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "citiesNotAvailable": "Sorry, no city available for this state, please choose another one!",
+  "@citiesNotAvailable": {
     "type": "text",
     "placeholders": {}
   }

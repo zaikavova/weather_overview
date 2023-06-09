@@ -8,4 +8,15 @@ class EnvironmentStatus {
   final Weather weather;
   final Location location;
   final AirCondition airCondition;
+
+  bool operator == (Object other)
+  {
+    if(other.runtimeType == EnvironmentStatus)
+      {
+        return location == (other as EnvironmentStatus).location;
+      }
+    else
+    return false;
+  }
+
 }

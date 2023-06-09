@@ -14,10 +14,10 @@ class AppRouter extends _$AppRouter {
           page: MainRoute.page,
         ),
         AutoRoute(
-          page: MainRoute.page,
+          page: AddLocationRoute.page,
         ),
         AutoRoute(
-          page: LocationDetailsRoute.page,
+          page: EnvironmentDetailsRoute.page,
         ),
       ];
 }

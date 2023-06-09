@@ -12,17 +12,24 @@ class InitialErrorStateWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Text(errorMessage),
-        InkWell(
-          onTap: onRetryPressed,
-          child: Ink(
-            child: Icon(Icons.replay),
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            errorMessage,
+            textAlign: TextAlign.center,
           ),
-        ),
-      ],
+          InkWell(
+            onTap: onRetryPressed,
+            child: Ink(
+              child: Icon(Icons.replay),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

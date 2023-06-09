@@ -14,6 +14,6 @@ class WeatherPM {
   final int atmosphericPressureHPA;
   final int humidityPercent;
   final double windSpeed;
-  final int windDirection;
+  final double windDirection;
   final WeatherVisualIndicator weatherIcon;
 }

@@ -2,10 +2,10 @@ import 'package:weather_overview/presentation/index.dart';
 
 class LocationPM {
   LocationPM({
-    required this.city,
-    required this.state,
-    required this.country,
-    required this.coordinates,
+    this.city,
+    this.state,
+    this.country,
+    this.coordinates,
   });
 
   final String? city;

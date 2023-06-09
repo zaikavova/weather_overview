@@ -12,15 +12,15 @@ class EnvironmentStatusState with _$EnvironmentStatusState {
       EnvironmentStatusInitialError;
 
   const factory EnvironmentStatusState.fetchedIdle(
-    List<EnvironmentStatusPM> statuses,
+    List<EnvironmentStatusPM> status,
   ) = EnvironmentStatusFetchedIdle;
 
   const factory EnvironmentStatusState.fetchedLoading(
-    List<EnvironmentStatusPM> statuses,
+    List<EnvironmentStatusPM> status,
   ) = EnvironmentStatusFetchedLoading;
 
   const factory EnvironmentStatusState.fetchedError(
-    List<EnvironmentStatusPM> statuses,
+    List<EnvironmentStatusPM> status,
     String errorMessage,
   ) = EnvironmentStatusFetchedError;
 }

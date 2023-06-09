@@ -9,20 +9,35 @@ abstract class AirVisualGateway extends ChopperService {
       _$AirVisualGateway(client);
 
   @Get(path: Constants.getCountriesRoute)
-  Future<Response<String>> getCountries(
-    @Query('key') String key,
-  );
+  Future<Response<String>> getCountries({
+    @Query('key') required String key,
+  });
 
   @Get(path: Constants.getStatesRoute)
-  Future<Response<String>> getStates(
-    @Query('country') String country,
-    @Query('key') String key,
-  );
+  Future<Response<String>> getStates({
+    @Query('country') required String country,
+    @Query('key') required String key,
+  });
 
   @Get(path: Constants.getCitiesRoute)
-  Future<Response<String>> getCities(
-    @Query('state') String state,
-    @Query('country') String country,
-    @Query('key') String key,
-  );
+  Future<Response<String>> getCities({
+    @Query('state') required String state,
+    @Query('country') required String country,
+    @Query('key') required String key,
+  });
+
+  @Get(path: Constants.getEnvironmentStatusByName)
+  Future<Response<String>> getEnvironmentStatesByPlaceName({
+    @Query('state') required String state,
+    @Query('country') required String country,
+    @Query('city') required String city,
+    @Query('key') required String key,
+  });
+
+  @Get(path: Constants.getEnvironmentStatusByGps)
+  Future<Response<String>> getEnvironmentStatesByLongLat({
+    @Query('lon') required double longitude,
+    @Query('lat') required double latitude,
+    @Query('key') required String key,
+  });
 }
