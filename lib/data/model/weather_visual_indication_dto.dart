@@ -21,8 +21,10 @@ enum WeatherVisualIndicatorDto {
   @JsonValue('02n')
   fewCloudsNight,
   @HiveField(4)
-  @JsonValue('03n')
+  @JsonValue('03d')
   scatteredClouds,
+  @JsonValue('03n')
+  scatteredCloudsNight,
   @HiveField(5)
   @JsonValue('04d')
   brokenClouds,

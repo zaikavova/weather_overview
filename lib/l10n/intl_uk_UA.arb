@@ -1,13 +1,37 @@
 {
   "@@locale": "uk_UA",
-  "title": "Заголовок",
-  "@title": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "generalException": "Щось пішло не так, спробуйте ще раз!",
-  "@generalException": {
-    "type": "text",
-    "placeholders": {}
-  }
+  "addFirstLocationMessage": "Натисніть +, щоб додати місце для моніторингу погоди та якості повітря",
+  "addLocationButton": "Додати місце",
+  "mainPollutant": "Забрудник",
+  "locationRequestMessage": "Покращіть свій досвід! Надайте нам доступ до вашого місцезнаходження для автоматичного відстеження погоди та якості повітря. Якщо ви бажаєте, ви можете вручну ввести своє місцезнаходження.",
+  "title": "Погода та повітря",
+  "generalException": "Щось пішло не так, спробуйте пізніше!",
+  "countryTitle": "Країна",
+  "stateTitle": "Область",
+  "cityTitle": "Місто",
+  "temperature": "температура",
+  "humidity": "вологість",
+  "windSpeed": "швидкість вітру",
+  "windDirection": "напрямок вітру",
+  "atmospherePressure": "атмосферний тиск",
+  "airQualityIndex": "ІЯП",
+  "citiesNotAvailable": "Вибачте, для цієї області немає доступних міст, будь ласка, виберіть іншу!",
+  "directionNameN": "Північ",
+  "directionNameNNE": "Пн-ПнСх",
+  "directionNameNE": "ПнСх",
+  "directionNameENE": "Сх-ПнСх",
+  "directionNameE": "Схід",
+  "directionNameESE": "Сх-ПдСх",
+  "directionNameSE": "ПдСх",
+  "directionNameSSE": "Пд-ПдСх",
+  "directionNameS": "Південь",
+  "directionNameSSW": "Пд-ПдЗх",
+  "directionNameSW": "ПдЗх",
+  "directionNameWSW": "Зх-ПдЗх",
+  "directionNameW": "Захід",
+  "directionNameWNW": "Зх-ПнЗх",
+  "directionNameNW": "ПнЗх",
+  "directionNameNNW": "Пн-ПнЗх",
+  "directionNameDefault": "Північ",
+  "metersPerSecond": "м/с"
 }

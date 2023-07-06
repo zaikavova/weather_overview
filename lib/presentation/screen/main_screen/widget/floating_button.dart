@@ -4,22 +4,21 @@ class FloatingButton extends StatelessWidget {
   const FloatingButton({
     super.key,
     required this.floatingButtonSize,
-    required this.theme,
     required this.onTap,
+    this.isLoading = false,
   });
 
   final double floatingButtonSize;
-  final ThemeData theme;
+  final bool isLoading;
   final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      borderRadius: BorderRadius.all(
-        Radius.circular(floatingButtonSize),
-      ),
+    final ThemeData theme = Theme.of(context);
+
+    return GestureDetector(
       onTap: onTap,
-      child: Ink(
+      child: Container(
         height: floatingButtonSize,
         width: floatingButtonSize,
         decoration: BoxDecoration(
@@ -37,7 +36,14 @@ class FloatingButton extends StatelessWidget {
           ),
         ),
         child: Center(
-          child: Icon(Icons.add),
+          child: isLoading
+              ? CircularProgressIndicator(
+                  color: theme.colorScheme.onSecondary,
+                )
+              : Icon(
+                  Icons.add,
+                  color: theme.colorScheme.onSecondary,
+                ),
         ),
       ),
     );

@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:weather_overview/assembly/factory.dart';
+import 'package:weather_overview/domain/exception/general_exception.dart';
 import 'package:weather_overview/generated/l10n.dart';
 
 class StatesFromJsonFactory implements Factory<String, List<String>> {
@@ -12,6 +13,6 @@ class StatesFromJsonFactory implements Factory<String, List<String>> {
           .map((e) => e['state'].toString())
           .toList();
     } else
-      throw Exception(S.current.generalException);
+      throw GeneralException(S.current.generalException);
   }
 }

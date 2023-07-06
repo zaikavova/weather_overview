@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:weather_overview/assembly/factory.dart';
+import 'package:weather_overview/domain/exception/no_available_data.dart';
 import 'package:weather_overview/generated/l10n.dart';
 
 class CitiesFromJsonFactory implements Factory<String, List<String>> {
@@ -12,6 +13,6 @@ class CitiesFromJsonFactory implements Factory<String, List<String>> {
           .map((e) => e['city'].toString())
           .toList();
     } else
-      throw Exception(S.current.citiesNotAvailable);
+      throw NoAvailableDataException(S.current.citiesNotAvailable);
   }
 }

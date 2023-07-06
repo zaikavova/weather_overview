@@ -10,20 +10,20 @@ part 'main_pollutant_dto.g.dart';
 enum MainPollutantDto {
   @HiveField(0)
   @JsonValue('p2')
-  Particles25, //  pm2.5
+  particles25, //  pm2.5
   @HiveField(1)
   @JsonValue('p1')
-  Particles100, // pm10
+  particles100, // pm10
   @HiveField(2)
   @JsonValue('03')
-  Ozone, // Ozone O3
+  ozone, // Ozone O3
   @HiveField(3)
   @JsonValue('n2')
-  NitrogenDioxide, //  Nitrogen dioxide NO2
+  nitrogenDioxide, //  Nitrogen dioxide NO2
   @HiveField(4)
   @JsonValue('s2')
-  SulfurDioxide, //  Sulfur dioxide SO2
+  sulfurDioxide, //  Sulfur dioxide SO2
   @HiveField(5)
   @JsonValue('c0')
-  CarbonMonoxide, // Carbon monoxide
+  carbonMonoxide, // Carbon monoxide
 }

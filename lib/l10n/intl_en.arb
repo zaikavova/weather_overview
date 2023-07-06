@@ -1,78 +1,36 @@
 {
   "@@locale": "en_GB",
+  "mainPollutant": "Pollutant",
   "addFirstLocationMessage": "Press + to add a place to monitor weather and air condition",
-  "@addFirstLocationMessage": {
-    "type": "text",
-    "placeholders": {}
-  },
   "addLocationButton": "Add Location",
-  "@addLocationButton": {
-    "type": "text",
-    "placeholders": {}
-  },
   "locationRequestMessage": "\"Enhance your experience! Grant us access to your location for automatic weather&air tracking. You can manually enter your location if you prefer.\"",
-  "@locationRequestMessage": {
-    "type": "text",
-    "placeholders": {}
-  },
   "title": "Weather&Air",
-  "@title": {
-    "type": "text",
-    "placeholders": {}
-  },
   "generalException": "Something went wrong, please try again later!",
-  "@generalException": {
-    "type": "text",
-    "placeholders": {}
-  },
   "countryTitle": "County",
-  "@countryTitle": {
-    "type": "text",
-    "placeholders": {}
-  },
   "stateTitle": "State",
-  "@stateTitle": {
-    "type": "text",
-    "placeholders": {}
-  },
   "cityTitle": "City",
-  "@cityTitle": {
-    "type": "text",
-    "placeholders": {}
-  },
   "temperature": "temperature",
-  "@temperature": {
-    "type": "text",
-    "placeholders": {}
-  },
   "humidity": "humidity",
-  "@humidity": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "windSpeed": "windSpeed",
-  "@windSpeed": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "windDirection": "windDirection",
-  "@windDirection": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "atmospherePressure": "atmospherePressure",
-  "@atmospherePressure": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "airQualityIndex": "airQualityIndex",
-  "@airQualityIndex": {
-    "type": "text",
-    "placeholders": {}
-  },
+  "windSpeed": "wind speed",
+  "windDirection": "wind direction",
+  "atmospherePressure": "atmosphere pressure",
+  "airQualityIndex": "AQI",
   "citiesNotAvailable": "Sorry, no city available for this state, please choose another one!",
-  "@citiesNotAvailable": {
-    "type": "text",
-    "placeholders": {}
-  }
+  "directionNameN": "N",
+  "directionNameNNE": "NNE",
+  "directionNameNE": "NE",
+  "directionNameENE": "ENE",
+  "directionNameE": "E",
+  "directionNameESE": "ESE",
+  "directionNameSE": "SE",
+  "directionNameSSE": "SSE",
+  "directionNameS": "S",
+  "directionNameSSW": "SSW",
+  "directionNameSW": "SW",
+  "directionNameWSW": "WSW",
+  "directionNameW": "W",
+  "directionNameWNW": "WNW",
+  "directionNameNW": "NW",
+  "directionNameNNW": "NNW",
+  "metersPerSecond": "m/s"
 }

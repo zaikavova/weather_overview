@@ -6,9 +6,14 @@ import 'package:weather_overview/presentation/index.dart';
 import 'package:weather_overview/routing/index.dart';
 
 class LoadedStatusStateWidget extends StatefulWidget {
-  const LoadedStatusStateWidget({super.key, required this.status});
+  const LoadedStatusStateWidget({
+    super.key,
+    required this.status,
+    required this.refresh,
+  });
 
   final List<EnvironmentStatusPM> status;
+  final Future<void> Function() refresh;
 
   @override
   State<LoadedStatusStateWidget> createState() =>
@@ -28,39 +33,48 @@ class _LoadedStatusStateWidgetState extends State<LoadedStatusStateWidget> {
   Widget build(BuildContext context) {
     final string = S.of(context);
 
-    return CustomScrollView(
-      slivers: [
-        if (widget.status.isEmpty)
-          SliverFillRemaining(
-            fillOverscroll: false,
-            hasScrollBody: false,
-            child: Center(
-              child: Text(string.addFirstLocationMessage),
+    return RefreshIndicator(
+      onRefresh: widget.refresh,
+      child: CustomScrollView(
+        slivers: [
+          if (widget.status.isEmpty)
+            SliverFillRemaining(
+              fillOverscroll: false,
+              hasScrollBody: false,
+              child: Center(
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Text(
+                    string.addFirstLocationMessage,
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+              ),
             ),
-          ),
-        if (widget.status.isNotEmpty)
-          SliverList(
-            delegate: SliverChildListDelegate([
-              ...widget.status
-                  .map<Widget>((e) => GestureDetector(
-                        child: Card(
-                          child: Column(
-                            children: [
-                              Text(
-                                  "${e.location.country} ${e.location.state} ${e.location.city}"),
-                              Text(
-                                  "Temperature ${e.weather.temperatureCelsius}C, Wind ${e.weather.windSpeed}m/s, Humidity${e.weather.humidityPercent}%"),
-                            ],
-                          ),
-                        ),
-                        onTap: () {
+          if (widget.status.isNotEmpty)
+            SliverList(
+              delegate: SliverChildListDelegate([
+                SizedBox(
+                  height: 8,
+                ),
+                ...widget.status
+                    .map<Widget>(
+                      (e) => EnvironmentStatusListItem(
+                        key: ValueKey<WeatherPM>(e.weather),
+                        onToDetails: () {
                           _router.push(EnvironmentDetailsRoute(statusPM: e));
                         },
-                      ))
-                  .toList()
-            ]),
-          )
-      ],
+                        statusPM: e,
+                        onRemove: () {
+                          print('test remove');
+                        },
+                      ),
+                    )
+                    .toList()
+              ]),
+            )
+        ],
+      ),
     );
   }
 }

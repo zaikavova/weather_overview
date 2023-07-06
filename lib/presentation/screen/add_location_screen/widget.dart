@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -53,16 +54,10 @@ class _AddLocationScreenState extends State<AddLocationScreen> {
                 return Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    DropdownButton<String>(
-                      isExpanded: true,
-                      value: _selectedCountry,
-                      iconSize: 32,
-                      icon: _getDropdownIcon(state),
-                      hint: Text(strings.countryTitle),
-                      items: (state.items ?? <String>[])
-                          .map((e) => DropdownMenuItem<String>(
-                              value: e, child: Text(e)))
-                          .toList(),
+                    DropdownSearch<String>(
+                      enabled: state.items?.isNotEmpty ?? false,
+                      items: (state.items ?? <String>[]),
+                      selectedItem: _selectedCountry,
                       onChanged: (String? item) {
                         if (item != null) {
                           setState(() {
@@ -73,71 +68,71 @@ class _AddLocationScreenState extends State<AddLocationScreen> {
                           });
                         }
                       },
+                      dropdownButtonProps: DropdownButtonProps(
+                        icon: _buildLoadingIcon(state),
+                      ),
+                      dropdownDecoratorProps: DropDownDecoratorProps(
+                        dropdownSearchDecoration: InputDecoration(
+                          labelText: strings.countryTitle,
+                        ),
+                      ),
                     ),
-                  ],
-                  mainAxisSize: MainAxisSize.min,
-                );
-              },
-            ),
-            BlocConsumer<StatesFetchBloc, FetchState<String>>(
-              listener: _errorListener,
-              bloc: _stateFetchBloc,
-              builder: (BuildContext _, FetchState<String> state) {
-                return Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    DropdownButton<String>(
-                      value: _selectedState,
-                      isExpanded: true,
-                      iconSize: 32,
-                      icon: _getDropdownIcon(state),
-                      hint: Text(strings.stateTitle),
-                      items: (state.items ?? <String>[])
-                          .map((e) => DropdownMenuItem<String>(
-                              value: e, child: Text(e)))
-                          .toList(),
-                      onChanged: (String? item) {
-                        final countryCopy = _selectedCountry;
-                        if (item != null && countryCopy != null) {
-                          setState(() {
-                            _selectedState = item;
-                            _selectedCity = null;
-                            _citiesFetchBloc.fetchData(
-                              CitySearchParam(
-                                country: countryCopy,
-                                state: item,
-                              ),
-                            );
-                          });
-                        }
+                    BlocConsumer<StatesFetchBloc, FetchState<String>>(
+                      listener: _errorListener,
+                      bloc: _stateFetchBloc,
+                      builder: (BuildContext _, FetchState<String> state) {
+                        return DropdownSearch<String>(
+                          enabled: state.items?.isNotEmpty ?? false,
+                          selectedItem: _selectedState,
+                          items: (state.items ?? <String>[]),
+                          onChanged: (String? item) {
+                            final countryCopy = _selectedCountry;
+                            if (item != null && countryCopy != null) {
+                              setState(() {
+                                _selectedState = item;
+                                _selectedCity = null;
+                                _citiesFetchBloc.fetchData(
+                                  CitySearchParam(
+                                    country: countryCopy,
+                                    state: item,
+                                  ),
+                                );
+                              });
+                            }
+                          },
+                          dropdownButtonProps: DropdownButtonProps(
+                            icon: _buildLoadingIcon(state),
+                          ),
+                          dropdownDecoratorProps: DropDownDecoratorProps(
+                            dropdownSearchDecoration: InputDecoration(
+                              labelText: strings.stateTitle,
+                            ),
+                          ),
+                        );
                       },
                     ),
-                  ],
-                  mainAxisSize: MainAxisSize.min,
-                );
-              },
-            ),
-            BlocConsumer<CitiesFetchBloc, FetchState<String>>(
-              listener: _errorListener,
-              bloc: _citiesFetchBloc,
-              builder: (BuildContext _, FetchState<String> state) {
-                return Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    DropdownButton<String>(
-                      value: _selectedCity,
-                      icon: _getDropdownIcon(state),
-                      isExpanded: true,
-                      iconSize: 32,
-                      hint: Text(strings.cityTitle),
-                      items: (state.items ?? <String>[])
-                          .map((e) => DropdownMenuItem<String>(
-                              value: e, child: Text(e)))
-                          .toList(),
-                      onChanged: (String? item) {
-                        setState(() {
-                          _selectedCity = item;
-                        });
+                    BlocConsumer<CitiesFetchBloc, FetchState<String>>(
+                      listener: _errorListener,
+                      bloc: _citiesFetchBloc,
+                      builder: (BuildContext _, FetchState<String> state) {
+                        return DropdownSearch<String>(
+                          enabled: state.items?.isNotEmpty ?? false,
+                          items: (state.items ?? <String>[]),
+                          selectedItem: _selectedCity,
+                          onChanged: (String? item) {
+                            setState(() {
+                              _selectedCity = item;
+                            });
+                          },
+                          dropdownDecoratorProps: DropDownDecoratorProps(
+                            dropdownSearchDecoration: InputDecoration(
+                              labelText: strings.cityTitle,
+                            ),
+                          ),
+                          dropdownButtonProps: DropdownButtonProps(
+                            icon: _buildLoadingIcon(state),
+                          ),
+                        );
                       },
                     ),
                   ],
@@ -146,13 +141,15 @@ class _AddLocationScreenState extends State<AddLocationScreen> {
               },
             ),
             CupertinoButton(
-              onPressed:!buttonIgnoringPredicate? () => _router.pop(
-                LocationPM(
-                  city: _selectedCity,
-                  state: _selectedState,
-                  country: _selectedCountry,
-                ),
-              ):null,
+              onPressed: !buttonIgnoringPredicate
+                  ? () => _router.pop(
+                        LocationPM(
+                          city: _selectedCity,
+                          state: _selectedState,
+                          country: _selectedCountry,
+                        ),
+                      )
+                  : null,
               child: Text(strings.addLocationButton),
             )
           ],
@@ -161,15 +158,16 @@ class _AddLocationScreenState extends State<AddLocationScreen> {
     );
   }
 
-  SizedBox? _getDropdownIcon(FetchState<String> state) {
-    return state.isLoading
-        ? SizedBox(
-            child: CircularProgressIndicator(),
-            height: 26,
-            width: 26,
-          )
-        : null;
-  }
+  Widget _buildLoadingIcon(FetchState<String> state) => state.isLoading
+      ? SizedBox(
+          height: 16,
+          width: 16,
+          child: CircularProgressIndicator(),
+        )
+      : Icon(
+          Icons.arrow_drop_down,
+          size: 24,
+        );
 
   void _errorListener(BuildContext context, FetchState<String> state) {
     final errorCopy = state.error;

@@ -8,4 +8,6 @@ class FetchState<DataPM> {
   final List<DataPM>? items;
   final bool isLoading;
   final String? error;
+
+  bool get hasError => error != null;
 }

@@ -1,8 +1,8 @@
 enum MainPollutant {
-  Particles25,
-  Particles100,
-  Ozone,
-  NitrogenDioxide,
-  SulfurDioxide,
-  CarbonMonoxide,
+  particles25,
+  particles100,
+  ozone,
+  nitrogenDioxide,
+  sulfurDioxide,
+  carbonMonoxide,
 }

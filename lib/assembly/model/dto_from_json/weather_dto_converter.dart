@@ -1,9 +1,8 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:weather_overview/assembly/model/dto_from_json/gps_location_dto_from_json_converter.dart';
 import 'package:weather_overview/data/index.dart';
+import 'package:weather_overview/domain/exception/index.dart';
 import 'package:weather_overview/generated/l10n.dart';
-
-
 
 class EnvironmentStatusDtoFromJsonConverter
     implements JsonConverter<EnvironmentStatusDto, Map<String, dynamic>> {
@@ -11,8 +10,8 @@ class EnvironmentStatusDtoFromJsonConverter
 
   @override
   EnvironmentStatusDto fromJson(Map<String, dynamic> json) {
-    if(json['status'] as String != 'success'){
-      throw Exception(S.current.generalException);
+    if (json['status'] as String != 'success') {
+      throw GeneralException(S.current.generalException);
     }
     final jsonData = (json['data'] as Map<String, dynamic>);
     final current = (jsonData['current'] as Map<String, dynamic>);

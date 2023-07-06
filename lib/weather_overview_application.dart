@@ -26,11 +26,11 @@ class _WeatherOverviewAppState extends State<WeatherOverviewApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-
       supportedLocales: [
         Locale.fromSubtags(languageCode: 'en'),
         Locale.fromSubtags(languageCode: 'uk', countryCode: 'UA'),
       ],
+      theme: ThemeData(fontFamily: 'Quicksand'),
       routerDelegate: router.delegate(),
       localizationsDelegates: [
         S.delegate,

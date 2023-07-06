@@ -1,10 +1,12 @@
 import 'dart:convert';
 
 import 'package:weather_overview/assembly/factory.dart';
+import 'package:weather_overview/domain/exception/index.dart';
 import 'package:weather_overview/generated/l10n.dart';
 
 class CountriesFromJsonFactory implements Factory<String, List<String>> {
   const CountriesFromJsonFactory();
+
   @override
   List<String> create(String args) {
     final jsonData = (json.decode(args) as Map<String, dynamic>);
@@ -13,8 +15,6 @@ class CountriesFromJsonFactory implements Factory<String, List<String>> {
           .map((e) => e['country'].toString())
           .toList();
     } else
-      throw Exception(S.current.generalException);
+      throw GeneralException(S.current.generalException);
   }
-
-
 }

@@ -6,6 +6,7 @@ import 'package:weather_overview/assembly/index.dart';
 import 'package:weather_overview/constants.dart';
 import 'package:weather_overview/data/index.dart';
 import 'package:weather_overview/domain/index.dart';
+import 'package:weather_overview/generated/l10n.dart';
 import 'package:weather_overview/presentation/index.dart';
 import 'package:weather_overview/routing/index.dart';
 
@@ -30,9 +31,13 @@ void init() {
   _initAssembly();
   _initUsecases();
 
+  _instance.registerSingleton<S Function()>(
+    () => S.current,
+  );
   _instance.registerLazySingleton<RootStackRouter>(() => AppRouter());
   _instance.registerLazySingleton<ChopperClient>(
-    () => ChopperClient(),
+    () => ChopperClient(
+    ),
   );
   _instance
       .registerLazySingleton<EnvironmentStatusBloc>(() => EnvironmentStatusBloc(
@@ -46,6 +51,7 @@ void init() {
     () => CitiesFetchBloc(
       _instance.get<FetchDataAction<String, CitySearchParam>>(),
       _instance.get<Factory<String, String>>(),
+      _instance.get<S Function()>(),
     ),
   );
 
@@ -53,12 +59,14 @@ void init() {
     () => CountriesFetchBloc(
       _instance.get<FetchDataAction<String, VoidParam>>(),
       _instance.get<Factory<String, String>>(),
+      _instance.get<S Function()>(),
     ),
   );
   _instance.registerFactory<StatesFetchBloc>(
     () => StatesFetchBloc(
       _instance.get<FetchDataAction<String, StateSearchParam>>(),
       _instance.get<Factory<String, String>>(),
+      _instance.get<S Function()>(),
     ),
   );
   _instance.registerFactory<AirVisualGateway>(

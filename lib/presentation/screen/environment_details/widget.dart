@@ -17,61 +17,51 @@ class EnvironmentDetailsScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text(statusPM.location.city ?? strings.title),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: CustomScrollView(
-          slivers: [
-            SliverList(
-              delegate: SliverChildListDelegate([
-                Row(
-                  children: [
-                    Text(strings.temperature),
-                    Spacer(),
-                    Text(statusPM.weather.temperatureCelsius.toString())
+      body: Stack(
+        children: [
+          CustomScrollView(
+            slivers: [
+              SliverList(
+                delegate: SliverChildListDelegate(
+                  [
+                    SizedBox(
+                      height: 16,
+                    ),
+                    Hero(
+                      tag: statusPM.weather,
+                      child: WeatherIndicatorIconWidget(
+                        size: MediaQuery.of(context).size.width * 0.7,
+                        indicator: statusPM.weather.weatherIcon,
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Wrap(
+                        alignment: WrapAlignment.spaceAround,
+                        spacing: 16,
+                        runSpacing: 16,
+                        children: [
+                          WindDirectionIndicator(weatherPM: statusPM.weather),
+                          WindSpeedIndicator(weatherPM: statusPM.weather),
+                          TemperatureIndicator(weatherPm: statusPM.weather),
+                          HumidityIndicator(weatherPM: statusPM.weather),
+                          AtmospherePressureIndicator(
+                            weatherPm: statusPM.weather,
+                          ),
+                          AirQualityIndicator(
+                              airConditionPM: statusPM.airCondition),
+                          MainPollutantIndicator(
+                            airConditionPM: statusPM.airCondition,
+                          ),
+                        ],
+                      ),
+                    ),
                   ],
                 ),
-                Row(
-                  children: [
-                    Text(strings.humidity),
-                    Spacer(),
-                    Text(statusPM.weather.humidityPercent.toString())
-                  ],
-                ),
-                Row(
-                  children: [
-                    Text(strings.windSpeed),
-                    Spacer(),
-                    Text(statusPM.weather.windSpeed.toString())
-                  ],
-                ),
-                Row(
-                  children: [
-                    Text(strings.windDirection),
-                    Spacer(),
-                    Text(statusPM.weather.windDirection.toString())
-                  ],
-                ),
-                Row(
-                  children: [
-                    Text(strings.atmospherePressure),
-                    Spacer(),
-                    Text(statusPM.weather.atmosphericPressureHPA.toString())
-                  ],
-                ),
-                Row(
-                  children: [
-                    Text(strings.airQualityIndex),
-                    Spacer(),
-                    Text(statusPM.airCondition.airQualityIndex.toString())
-                  ],
-                ),
-                WeatherIndicatorIconWidget(
-                  indicator: statusPM.weather.weatherIcon,
-                ),
-              ]),
-            ),
-          ],
-        ),
+              ),
+            ],
+          ),
+        ],
       ),
     );
   }

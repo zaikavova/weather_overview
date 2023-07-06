@@ -2,14 +2,22 @@ import 'package:flutter/cupertino.dart';
 import 'package:weather_overview/domain/index.dart';
 import 'package:weather_overview/gen/assets.gen.dart';
 
-class WeatherIndicatorIconWidget extends StatelessWidget{
-  const WeatherIndicatorIconWidget({super.key, required this.indicator});
+class WeatherIndicatorIconWidget extends StatelessWidget {
+  const WeatherIndicatorIconWidget(
+      {super.key, required this.indicator, this.size = 64});
 
-final  WeatherVisualIndicator indicator;
+  final WeatherVisualIndicator indicator;
+  final double size;
 
   @override
-  Widget build(BuildContext context) {
-    switch(indicator){
+  Widget build(BuildContext context) => SizedBox(
+        height: size,
+        width: size,
+        child: _getImage(),
+      );
+
+  Image _getImage() {
+    switch (indicator) {
       case WeatherVisualIndicator.clearSkyDay:
         return Assets.icons.a01d.image();
       case WeatherVisualIndicator.clearSkyNight:
@@ -19,6 +27,9 @@ final  WeatherVisualIndicator indicator;
       case WeatherVisualIndicator.fewCloudsNight:
         return Assets.icons.a02n.image();
       case WeatherVisualIndicator.scatteredClouds:
+        return Assets.icons.a03d.image();
+      case WeatherVisualIndicator.scatteredCloudsNight:
+        //TODO(Volodymyr): Watch AirVisualApi for update of docs
         return Assets.icons.a03d.image();
       case WeatherVisualIndicator.brokenClouds:
         return Assets.icons.a04d.image();
@@ -36,5 +47,4 @@ final  WeatherVisualIndicator indicator;
         return Assets.icons.a50d.image();
     }
   }
-
 }

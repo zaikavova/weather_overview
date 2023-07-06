@@ -17,6 +17,8 @@ class WeatherVisualIndicatorFromDto
         return WeatherVisualIndicator.fewCloudsNight;
       case WeatherVisualIndicatorDto.scatteredClouds:
         return WeatherVisualIndicator.scatteredClouds;
+      case WeatherVisualIndicatorDto.scatteredCloudsNight:
+        return WeatherVisualIndicator.scatteredClouds;
       case WeatherVisualIndicatorDto.brokenClouds:
         return WeatherVisualIndicator.brokenClouds;
       case WeatherVisualIndicatorDto.brokenCloudsN:

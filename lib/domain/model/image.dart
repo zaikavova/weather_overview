@@ -9,8 +9,10 @@ enum WeatherVisualIndicator {
   fewCloudsDay,
   @JsonValue('02n')
   fewCloudsNight,
-  @JsonValue('03n')
+  @JsonValue('03d')
   scatteredClouds,
+  @JsonValue('03n')
+  scatteredCloudsNight,
   @JsonValue('04d')
   brokenClouds,
   @JsonValue('09d')

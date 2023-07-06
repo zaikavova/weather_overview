@@ -8,18 +8,18 @@ class MainPollutantFromDtoFactory
   @override
   MainPollutant create(MainPollutantDto args) {
     switch (args) {
-      case MainPollutantDto.Particles25:
-        return MainPollutant.Particles25;
-      case MainPollutantDto.Particles100:
-        return MainPollutant.Particles100;
-      case MainPollutantDto.Ozone:
-        return MainPollutant.Ozone;
-      case MainPollutantDto.NitrogenDioxide:
-        return MainPollutant.NitrogenDioxide;
-      case MainPollutantDto.SulfurDioxide:
-        return MainPollutant.SulfurDioxide;
-      case MainPollutantDto.CarbonMonoxide:
-        return MainPollutant.CarbonMonoxide;
+      case MainPollutantDto.particles25:
+        return MainPollutant.particles25;
+      case MainPollutantDto.particles100:
+        return MainPollutant.particles100;
+      case MainPollutantDto.ozone:
+        return MainPollutant.ozone;
+      case MainPollutantDto.nitrogenDioxide:
+        return MainPollutant.nitrogenDioxide;
+      case MainPollutantDto.sulfurDioxide:
+        return MainPollutant.sulfurDioxide;
+      case MainPollutantDto.carbonMonoxide:
+        return MainPollutant.carbonMonoxide;
     }
   }
 }
